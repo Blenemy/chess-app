@@ -1,9 +1,11 @@
 // import './PersonalAccount.scss'
 
-export const PersonalAccount = () => {
+const PersonalAccount = () => {
   return (
     <div>
       <div>Personal Account</div>
     </div>
   );
 };
+
+export default PersonalAccount;

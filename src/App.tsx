@@ -2,7 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import { routes } from "./utils/routes/config";
 
-import MotionWrapper from "./components/Container/Container";
+import MotionWrapper from "./components/MotionWrapper/MotionWrapper";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import PersonalAccount from "./pages/personal-account/PersonalAccount";
 import Login from "./components/Login/Login";
@@ -12,7 +12,6 @@ function App() {
   return (
     <div className="App">
       <MotionWrapper>
-        <div>123</div>
         <Link to={routes.login}>Login</Link>
         <Link to={routes.home}>Home Page</Link>
         <Link to={routes.personalAccount}>Personal Account</Link>

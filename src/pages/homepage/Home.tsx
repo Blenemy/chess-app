@@ -1,9 +1,11 @@
 // import './Home.scss'
 
+import Chat from "../../components/Chat/Chat";
+
 const Home = () => {
   return (
     <div>
-      <div>Home Page</div>
+      <Chat />
     </div>
   );
 };

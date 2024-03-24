@@ -8,6 +8,8 @@ import PersonalAccount from "./pages/personal-account/PersonalAccount";
 import Login from "./components/Login/Login";
 import Home from "./pages/homepage/Home";
 
+import "./styles/main.scss";
+
 function App() {
   return (
     <div className="App">

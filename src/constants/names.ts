@@ -1,4 +1,4 @@
-export const nameList = [
+export const nameList: string[] = [
   "Time",
   "Past",
   "Future",
@@ -175,12 +175,13 @@ export const nameList = [
   "Paradox",
 ];
 
-export function generateRandomName(listOfNames: string[]) {
+export function generateRandomName(listOfNames: string[]): string | undefined {
   if (!listOfNames.length) {
     return;
   }
 
-  const finalName = listOfNames[Math.floor(Math.random() * listOfNames.length)];
+  const finalName: string =
+    listOfNames[Math.floor(Math.random() * listOfNames.length)];
 
   return finalName;
 }

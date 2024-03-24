@@ -1,0 +1,6 @@
+@use "variables";
+@use "./reset";
+
+body {
+  background: variables.$background-color;
+}

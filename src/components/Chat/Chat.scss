@@ -5,6 +5,7 @@
   max-width: 350px;
   border-radius: 5px 5px 0 0;
   color: #4d4d4d;
+  box-shadow: variables.$box-shadow;
 
   &__tabs {
     display: flex;

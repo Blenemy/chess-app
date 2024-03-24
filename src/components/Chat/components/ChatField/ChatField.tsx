@@ -28,22 +28,11 @@ const ChatField = () => {
   const [currentMessage, setCurrentMessage] = useState<string>("");
   const [disabledPresets, setDisabledPresets] = useState<string[]>([]);
 
-  const isDisabledPreset = (preset: string) => {
-    return disabledPresets.some((el) => el === preset);
-  };
-
   const socket = io(`wss://langcards.fun`, {
     transports: ["websocket", "polling"],
   });
 
   useEffect(() => {
-    // const randomId = Math.round(Math.random() * 100);
-
-    // socket.on("connect", () => {
-    //   const userName = generateRandomName(nameList);
-    //   socket.emit("username", userName);
-    // });
-
     socket.on("message", (message) => {
       setMessages((messages) => [...messages, message]);
     });
@@ -53,14 +42,18 @@ const ChatField = () => {
     };
   }, []);
 
+  const isDisabledPreset = (preset: string) => {
+    return disabledPresets.some((el) => el === preset);
+  };
+
   const sendMessage = (message: string) => {
     socket.emit("message", message);
   };
+
   const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && e.currentTarget.value) {
-      const message = e.currentTarget.value;
-      sendMessage(message);
-      e.currentTarget.value = "";
+    if (e.key === "Enter" && currentMessage) {
+      sendMessage(currentMessage);
+      setCurrentMessage("");
     }
   };
 

@@ -1,3 +1,6 @@
+$border-chat-color: #d9d9d9;
+$background-chat-color: #fafaf9;
+
 .group-chat {
   display: flex;
   flex-direction: column;
@@ -14,9 +17,37 @@
 
   &__input {
     border: 0;
-    border-top: 1px solid #d9d9d9;
+    border-top: 1px solid $border-chat-color;
     border-radius: 0;
     padding: 3px 20px 3px 4px;
-    background: #fafaf9;
+    background: $background-chat-color;
   }
+
+  &__presets {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    flex-flow: row nowrap;
+    line-height: 1.4em;
+    user-select: none;
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    text-align: center;
+    opacity: 0.8;
+    border: 1px solid $border-chat-color;
+    border-width: 1px 1px 0 0;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 150ms;
+  }
+}
+
+.disabled-preset {
+  background: $background-chat-color;
+  color: rgba(0, 0, 0, 0);
+  cursor: default;
+  pointer-events: none;
 }

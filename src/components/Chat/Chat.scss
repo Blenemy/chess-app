@@ -1,23 +1,36 @@
+@use "../../styles/variables";
+
 .chat {
-  background-color: #f3f3f3;
   min-width: 250px;
   max-width: 350px;
-  &__container {
-    padding: 10px;
+  border-radius: 5px 5px 0 0;
+  color: #4d4d4d;
+
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
   }
 
-  &__group {
+  &__tab {
+    flex: 1 1 50%;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 5px 5px 0 0;
   }
 
-  &__list {
+  &__content {
+    background-color: #fff;
+    height: 500px;
   }
+}
 
-  &__message {
-  }
+.active-tab {
+  background-color: #fff;
+}
 
-  &__enter-field {
-  }
-
-  &__input {
+.not-active-tab {
+  &:hover {
+    background: #f9e5d9;
   }
 }

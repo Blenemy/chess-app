@@ -1,87 +1,47 @@
-import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import { useState } from "react";
+import cn from "classnames";
+
+import ChatField from "./components/ChatField/ChatField";
+import Notes from "./components/Notes/Notes";
 
 import "./Chat.scss";
-// import { generateRandomName, nameList } from "../../constants/names";
+
+const tabs = [
+  { label: "Chat", component: <ChatField /> },
+  { label: "Notes", component: <Notes /> },
+];
 
 const Chat = () => {
-  const [messages, setMessages] = useState<string[]>([]);
-  // const [users, setusers] = useState<any>([]);
-  const socket = io(`wss://langcards.fun`, {
-    transports: ["websocket", "polling"],
-  });
-
-  useEffect(() => {
-    // const randomId = Math.round(Math.random() * 100);
-
-    // socket.on("connect", () => {
-    //   const userName = generateRandomName(nameList);
-    //   socket.emit("username", userName);
-    // });
-
-    socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  const sendMessage = (message: string) => {
-    socket.emit("message", message);
-  };
+  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const currentTab = tabs[currentTabIndex];
 
   return (
     <section className="chat">
-      <div className="chat__container">
-        <article className="chat__group">
-          <ul className="chat__list">
-            {messages.map((msg, index) => (
-              <li key={index} className="chat__message">
-                {msg}
-              </li>
-            ))}
-          </ul>
-        </article>
-        <article className="chat__enter-field">
-          <input
-            type="text"
-            className="chat__input"
-            placeholder="Text your message here"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && e.currentTarget.value) {
-                const message = e.currentTarget.value;
-                sendMessage(message);
-                e.currentTarget.value = "";
-              }
-            }}
-          />
-        </article>
-        {/* <article className="chat__users">
-          <ul className="chat__users-list">
-            {users.map((user: string) => (
-              <li className="chat__user-name" key={user}>
-                {user}
-              </li>
-            ))}
-          </ul>
-        </article> */}
-        {/* <button
+      <div className="chat__tabs">
+        <div
           onClick={() => {
-            socket.connect();
+            setCurrentTabIndex(0);
           }}
+          className={cn("chat__tab", {
+            "active-tab": currentTabIndex === 0,
+            "not-active-tab": currentTabIndex !== 0,
+          })}
         >
-          Connect
-        </button>
-        <button
+          Чат
+        </div>
+        <div
           onClick={() => {
-            socket.disconnect();
+            setCurrentTabIndex(1);
           }}
+          className={cn("chat__tab", {
+            "active-tab": currentTabIndex === 1,
+            "not-active-tab": currentTabIndex !== 1,
+          })}
         >
-          Disconnect
-        </button> */}
+          Заметки
+        </div>
       </div>
+      <div className="chat__content">{currentTab.component}</div>
     </section>
   );
 };

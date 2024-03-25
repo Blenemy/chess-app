@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { routes } from "./utils/routes/config";
 
@@ -9,15 +9,14 @@ import Login from "./components/Login/Login";
 import Home from "./pages/homepage/Home";
 
 import "./styles/main.scss";
+import Header from "./components/Navbar/Header";
 
 function App() {
   return (
     <div className="App">
       <MotionWrapper>
-        <Link to={routes.login}>Login</Link>
-        <Link to={routes.home}>Home Page</Link>
-        <Link to={routes.personalAccount}>Personal Account</Link>
-        <div>
+        <Header />
+        <section>
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route element={<Home />} path={routes.home} />
@@ -28,7 +27,7 @@ function App() {
             </Route>
             <Route element={<Login />} path={routes.login} />
           </Routes>
-        </div>
+        </section>
       </MotionWrapper>
     </div>
   );

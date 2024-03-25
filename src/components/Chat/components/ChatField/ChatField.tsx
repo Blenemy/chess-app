@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import cn from "classnames";
 
+import { TChatPreset } from "../../types/ChatTypes";
+
 import "./ChatField.scss";
 
-const CHAT_PRESETS = [
+const CHAT_PRESETS: TChatPreset[] = [
   {
     ["data-title"]: "Hello!",
     message: "Hi",
@@ -57,6 +59,11 @@ const ChatField = () => {
     }
   };
 
+  const handlePresetClick = (preset: TChatPreset) => () => {
+    sendMessage(preset["data-title"]);
+    setDisabledPresets((prev) => [...prev, preset.message]);
+  };
+
   return (
     <div className="group-chat">
       <ul className="group-chat__list">
@@ -82,10 +89,7 @@ const ChatField = () => {
               "disabled-preset": isDisabledPreset(preset.message),
             })}
             data-title={preset["data-title"]}
-            onClick={() => {
-              sendMessage(preset["data-title"]);
-              setDisabledPresets((prev) => [...prev, preset.message]);
-            }}
+            onClick={handlePresetClick(preset)}
           >
             {preset.message}
           </article>

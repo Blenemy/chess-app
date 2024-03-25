@@ -1,19 +1,21 @@
 import { useState } from "react";
 import cn from "classnames";
 
+import { TTAb } from "./types/ChatTypes";
+
 import ChatField from "./components/ChatField/ChatField";
 import Notes from "./components/Notes/Notes";
 
 import "./Chat.scss";
 
-const tabs = [
+const tabs: TTAb[] = [
   { label: "Чат", component: <ChatField /> },
   { label: "Заметки", component: <Notes /> },
 ];
 
 const Chat = () => {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
-  const currentTab = tabs[currentTabIndex];
+  const currentTab = tabs[currentTabIndex].component;
 
   return (
     <section className="chat">
@@ -33,7 +35,7 @@ const Chat = () => {
           </div>
         ))}
       </div>
-      <div className="chat__content">{currentTab.component}</div>
+      <div className="chat__content">{currentTab}</div>
     </section>
   );
 };

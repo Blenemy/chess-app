@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import cn from "classnames";
 
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { addMessage } from "../../../../features/ChatMessagesSlice";
+
 import { TChatPreset } from "../../types/ChatTypes";
 
 import "./ChatField.scss";
@@ -26,9 +29,10 @@ const CHAT_PRESETS: TChatPreset[] = [
 ];
 
 const ChatField = () => {
-  const [messages, setMessages] = useState<string[]>([]);
+  const { messages } = useAppSelector((state) => state.chatMessages);
   const [currentMessage, setCurrentMessage] = useState<string>("");
   const [disabledPresets, setDisabledPresets] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
 
   const socket = io(`wss://langcards.fun`, {
     transports: ["websocket", "polling"],
@@ -36,7 +40,7 @@ const ChatField = () => {
 
   useEffect(() => {
     socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message]);
+      dispatch(addMessage(message));
     });
 
     return () => {
@@ -50,6 +54,7 @@ const ChatField = () => {
 
   const sendMessage = (message: string) => {
     socket.emit("message", message);
+    dispatch(addMessage(message));
   };
 
   const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -67,9 +72,9 @@ const ChatField = () => {
   return (
     <div className="group-chat">
       <ul className="group-chat__list">
-        {messages.map((msg, index) => (
+        {messages.map((message, index) => (
           <li key={index} className="group-chat__message">
-            {msg}
+            {message}
           </li>
         ))}
       </ul>

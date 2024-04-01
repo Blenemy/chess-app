@@ -7,9 +7,9 @@ import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import PersonalAccount from "./pages/personal-account/PersonalAccount";
 import Login from "./components/Login/Login";
 import Home from "./pages/homepage/Home";
+import Header from "./components/Navbar/Header";
 
 import "./styles/main.scss";
-import Header from "./components/Navbar/Header";
 
 function App() {
   return (

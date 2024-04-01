@@ -1,0 +1,14 @@
+.site-buttons {
+  display: flex;
+
+  &__button {
+    border: none;
+    background: none;
+    position: relative;
+  }
+
+  &__notification-bell {
+    width: 18px;
+    height: 18px;
+  }
+}

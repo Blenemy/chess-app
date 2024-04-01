@@ -1,0 +1,55 @@
+#notify-app {
+  overflow: hidden;
+  width: 25rem;
+  max-width: 100vw;
+  border-radius: 5px 0 0 5px;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  background: #fff;
+  z-index: 109;
+  box-shadow: -1px 5px 6px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 150ms,
+    visibility 0s linear 0s;
+}
+
+.prev {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.pager {
+  display: block;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.data-icon-prev::before {
+  font-size: 1.2em;
+  vertical-align: middle;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none;
+  content: attr(data-icon);
+  opacity: 0.9;
+  unicode-bidi: isolate;
+}
+
+.empty {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.notification-icon {
+  &::before {
+    content: attr(data-icon);
+    margin-right: 0.4em;
+    margin-inline: 0 0.4em;
+  }
+}

@@ -7,7 +7,8 @@ import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import PersonalAccount from "./pages/personal-account/PersonalAccount";
 import Login from "./components/Login/Login";
 import Home from "./pages/homepage/Home";
-import Header from "./components/Navbar/Header";
+import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
 
 import "./styles/main.scss";
 
@@ -15,19 +16,21 @@ function App() {
   return (
     <div className="App">
       <MotionWrapper>
-        <Header />
-        <section>
-          <Routes>
-            <Route element={<PrivateRoutes />}>
-              <Route element={<Home />} path={routes.home} />
-              <Route
-                element={<PersonalAccount />}
-                path={routes.personalAccount}
-              />
-            </Route>
-            <Route element={<Login />} path={routes.login} />
-          </Routes>
-        </section>
+        <Container>
+          <Header />
+          <section>
+            <Routes>
+              <Route element={<PrivateRoutes />}>
+                <Route element={<Home />} path={routes.home} />
+                <Route
+                  element={<PersonalAccount />}
+                  path={routes.personalAccount}
+                />
+              </Route>
+              <Route element={<Login />} path={routes.login} />
+            </Routes>
+          </section>
+        </Container>
       </MotionWrapper>
     </div>
   );

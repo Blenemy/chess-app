@@ -54,7 +54,6 @@ const ChatField = () => {
 
   const sendMessage = (message: string) => {
     socket.emit("message", message);
-    dispatch(addMessage(message));
   };
 
   const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
